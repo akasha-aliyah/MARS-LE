@@ -1,0 +1,44 @@
+.data
+welcome: .asciiz "Welcome to Hogwarts!\n"
+study:	 .asciiz "You best start studying now!\n"
+sorting: .asciiz "Don't be afraid! The Sorting Hat will not hurt you.\n"
+.text
+.globl main
+main:
+	# beginning hogwarts
+	expt welcome
+	expt sorting
+	sort
+	
+	# practicing some magic
+	acc $t1, $zero, 20	# $t1 = 0 + 20 = 20
+	acc $t2, $zero, 1	# $t2 = 0 + 1 = 1
+	acc $t3, $zero, 4	# $t3 = 0 + 4 = 4
+	gem $t2, $t2, $t3	# $t2 = 1 + 4 = 5
+	lms $t3			# $t3 = 4 + 1 = 5
+	almr $t3, $t2, spell	# jump to spell if 5 == 5
+	
+endspell:
+	flip $t1, $t3		# flip 20 and 5
+	scsm $t3		# 20 - rand value
+	clpt $t3, $t2, exams	# jump to exams if 20 != 5
+	
+spell:
+	cast
+	cast
+	cast
+	aprt endspell
+	
+exams:
+	expt study
+	armt
+	cnfd $t1, $t2, $t3
+	test
+	hspt
+	cnfr
+	hspt
+
+ohno:
+	avkd
+
+end:
